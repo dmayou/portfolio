@@ -3,12 +3,14 @@ const app = express();
 const bodyParser = require('body-parser');
 const port = process.env.PORT || 5000;
 
+const projectRouter = require('./routes/project.route.js');
+
 /** ---------- MIDDLEWARE ---------- **/
 app.use(bodyParser.json()); // needed for angular requests
 app.use(express.static('build'));
 
 /** ---------- ROUTES ---------- **/
-
+app.use('/api/projects', projectRouter);
 
 /** ---------- START SERVER ---------- **/
 app.listen(port, function () {

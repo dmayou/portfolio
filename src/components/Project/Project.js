@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Grid, Button, Card, Fab, IconButton, CardContent, CardMedia, CardActions, Typography } from '@material-ui/core';
 
 class Project extends Component {
+    componentDidMount() {
+        this.props.dispatch({ type: 'FETCH_PROJECTS' });
+    }
     render() {
-        console.log('props', this.props);
         return (
             <Grid item>
                 <Card>
@@ -36,4 +39,4 @@ class Project extends Component {
     }
 }
 
-export default Project;
+export default connect()(Project);
