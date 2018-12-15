@@ -9,10 +9,12 @@ import { Provider } from 'react-redux';
 import logger from 'redux-logger';
 // Import saga middleware
 import createSagaMiddleware from 'redux-saga';
+import { takeEvery } from 'redux-saga/effects';
+import fetchProjects from './sagas/projectSaga';
 
 // Create the rootSaga generator function
 function* rootSaga() {
-
+    yield takeEvery('FETCH_PROJECTS', fetchProjects)
 }
 
 // Create sagaMiddleware
