@@ -19,41 +19,44 @@ const theme = createMuiTheme({
     background: {
       paper: beige,
       default: gray,
-    }
+    },
   },
 });
 
-const styles = theme => ({
+const styles = {
   root: {
     width: '100%',
     maxWidth: 250,
+    direction: 'row',
   },
   container: {
     display: 'flex',
     flexWrap: 'wrap',
+    direction: 'row',
   },
   margin: {
     margin: theme.spacing.unit,
   },
-  card: {
-    maxWidth: 345,
+  paper: {
+    maxWidth: '600px',
   },
-});
+  card: {
+    maxWidth: '400px',
+  },
+};
 
 class App extends Component {
   // Renders the entire app on the DOM
   render() {
     return (
-      <div className="App">
         <MuiThemeProvider theme={theme}>
           <CssBaseline /> 
           <ButtonAppBar />
-          <Grid container>
+          <Grid container >
             <Project />        
             <Project />        
           </Grid>
         </MuiThemeProvider>
-      </div>
     );
   }
 }
