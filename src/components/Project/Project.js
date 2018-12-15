@@ -5,6 +5,7 @@ import { Grid, Button, Card, Fab, IconButton, CardContent, CardMedia, CardAction
 class Project extends Component {
     componentDidMount() {
         this.props.dispatch({ type: 'FETCH_PROJECTS' });
+        this.props.dispatch({ type: 'FETCH_TAGS' });
     }
     render() {
         return (
