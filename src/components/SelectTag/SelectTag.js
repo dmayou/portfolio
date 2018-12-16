@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { MDCSelect } from '@material/select';
-// import '@material/select/mdc-select';
 
 class SelectTag extends Component {
     componentDidMount() {
@@ -33,8 +32,8 @@ class SelectTag extends Component {
                     </option>
                     {tagList}
                 </select>
-                <label class="mdc-floating-label">Choose Tag</label>
-                <div class="mdc-line-ripple"></div>
+                <label className="mdc-floating-label">Choose Tag</label>
+                <div className="mdc-line-ripple"></div>
             </div>
         )
     }

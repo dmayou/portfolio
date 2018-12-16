@@ -8,13 +8,13 @@ import SelectTag from '../SelectTag/SelectTag';
 class ProjectForm extends Component {
     state = {
         project: {
-            name: '',
-            description: '',
-            thumbnail: '',
-            website: '',
-            github: '',
-            date_completed: '1/1/1900',
-            tag_id: '',
+            name: null,
+            description: null,
+            thumbnail: null,
+            website: null,
+            github: null,
+            date_completed: null,
+            tag_id: null,
         }
     }
     handleChange = (key) => (event) => {
@@ -23,7 +23,9 @@ class ProjectForm extends Component {
                 ...this.state.project, [key]: event.target.value
             }
         });
-        console.log(this.state.project);
+    }
+    handleClick = () => {
+        this.props.dispatch({ type: 'ADD_PROJECT', payload: this.state.project});
     }
     setTag = (id) => {
         this.setState({
@@ -73,6 +75,7 @@ class ProjectForm extends Component {
                     multiline rowsMax='5'
                 />
                 <Button
+                    onClick={this.handleClick}
                     variant="contained"
                     default
                     >Add Project
