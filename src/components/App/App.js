@@ -54,9 +54,7 @@ class App extends Component {
           <CssBaseline /> 
           <ButtonAppBar />
           <Grid container >
-          <div>
             <ProjectList />        
-          </div>
           </Grid>
         </MuiThemeProvider>
     );

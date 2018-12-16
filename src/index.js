@@ -22,15 +22,6 @@ function* rootSaga() {
 // Create sagaMiddleware
 const sagaMiddleware = createSagaMiddleware();
 
-// const projectInitState = [{
-//     id: 0,
-//     thumbnail: '',
-//     description: '',
-//     github: '',
-//     website: '',
-//     date_completed: '1/1/1900',
-//     tag_name: '',
-// }];
 // Used to store projects returned from the server
 const projects = (state = [], action) => {
     switch (action.type) {

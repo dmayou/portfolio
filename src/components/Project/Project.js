@@ -6,9 +6,8 @@ import HerokuLogo from '../HerokuLogo/HerokuLogo';
 class Project extends Component {
     render() {
         const { props } = this;
-        console.log('in Project: props=', props);
         return (
-            <Grid item>
+            <Grid key={props.id} item>
                 <Card>
                     <CardContent>
                         <Typography variant='h2'>
@@ -20,9 +19,7 @@ class Project extends Component {
                             title=''
                         />
                         <Typography variant='body1'>
-                            {props.description}An app for students to enter, review, and submit daily 
-                            feedback on their learning and progress. Includes an admin
-                            view with ability to flag and delete.
+                            {props.description}
                         </Typography>
                         <Typography>
                             Tags: {props.tag_name}
