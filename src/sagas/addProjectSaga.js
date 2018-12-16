@@ -1,5 +1,4 @@
 import { call, put as dispatch } from 'redux-saga/effects';
-import { delay } from 'redux-saga';
 import axios from 'axios';
 
 function* addProject(action) {

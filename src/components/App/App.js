@@ -8,7 +8,7 @@ import { withStyles } from '@material-ui/core/styles';
 import './App.css';
 import ButtonAppBar from '../ButtonAppBar/ButtonAppBar';
 import ProjectList from '../ProjectList/ProjectList';
-import ProjectForm from '../ProjectForm/ProjectForm';
+import AdminView from '../AdminView/AdminView';
 
 import 'typeface-roboto';
 
@@ -48,6 +48,9 @@ const styles = {
 };
 
 class App extends Component {
+  componentDidMount() {
+    this.props.dispatch({ type: 'FETCH_PROJECTS' });
+  }
   // Renders the entire app on the DOM
   render() {
     const { snackbar } = this.props.store;
@@ -59,7 +62,7 @@ class App extends Component {
               <ButtonAppBar />
               <Grid container >
                 <Route path="/" exact component={ProjectList} />
-                <Route path="/add" component={ProjectForm} />
+                <Route path="/add" component={AdminView} />
               </Grid>
             </div>
           </Router>

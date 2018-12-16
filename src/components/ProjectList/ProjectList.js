@@ -4,9 +4,6 @@ import { Grid } from '@material-ui/core';
 import Project from '../Project/Project';
 
 class ProjectList extends Component {
-    componentDidMount() {
-        this.props.dispatch({ type: 'FETCH_PROJECTS' });
-    }
     render() {
         const projectList = this.props.store.projects.map( (proj) => {
             if (proj.description === null) proj.description = '';
