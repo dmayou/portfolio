@@ -92,7 +92,6 @@ class ProjectForm extends Component {
         console.log('tag id:', id);
     }
     render() {
-        console.log('in Form render(). state:', this.state);
         const { project } = this.state;
         return (
             <form>
