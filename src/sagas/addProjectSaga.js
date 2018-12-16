@@ -8,6 +8,7 @@ function* addProject(action) {
             type: 'SHOW_SNACKBAR', 
             payload: {message: 'Project added successfully!', dwell: 3500}
         });
+        yield dispatch({ type: 'FETCH_PROJECTS' });
     } catch (err) {
         console.log('addProject error:', err);
         yield dispatch({

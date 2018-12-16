@@ -12,6 +12,7 @@ import Delete from '@material-ui/icons/Delete';
 class AdminProjectList extends Component {
     handleClick = (id) => {
         console.log('delete clicked, id=', id);
+        this.props.dispatch({ type: 'DELETE_PROJECT', payload: { id: id } });
     }
     render() {
     const projectList = this.props.store.projects.map( (project) => {
