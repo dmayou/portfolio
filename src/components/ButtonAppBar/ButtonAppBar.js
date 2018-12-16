@@ -28,7 +28,7 @@ class ButtonAppBar extends Component {
         switch (history.location.pathname) {
             case '/' :
                 history.push('/admin');
-                console.log('in admin case');
+                console.log('this will eventually require login credentials');
                 break;
             case '/admin' :
             default : 

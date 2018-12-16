@@ -3,7 +3,6 @@ import { delay } from 'redux-saga';
 
 function* snackBarNotify(action) {
     try {
-        console.log('notify payload:', action.payload.message );
         yield dispatch({
             type: 'SET_SNACKBAR',
             payload: {
