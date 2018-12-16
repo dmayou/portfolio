@@ -10,7 +10,8 @@ class SelectTag extends Component {
     initSelect() {
         const select = new MDCSelect(document.querySelector('.mdc-select'));
         select.listen('MDCSelect:change', () => {
-            this.props.setTag(select.selectedIndex);
+            const dbTagId = this.props.store.tags[select.selectedIndex - 1].id
+            this.props.setTag(dbTagId);
         });
     }
     render() {
