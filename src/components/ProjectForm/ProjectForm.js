@@ -8,14 +8,29 @@ import SelectTag from '../SelectTag/SelectTag';
 class ProjectForm extends Component {
     state = {
         project: {
-            name: null,
-            description: null,
-            thumbnail: null,
-            website: null,
-            github: null,
-            date_completed: null,
-            tag_id: null,
+            name: '',
+            description: '',
+            thumbnail: '',
+            website: '',
+            github: '',
+            date_completed: '',
+            tag_id: '0',
         }
+    }
+    clearForm() {
+        console.log('in clearForm()');
+        this.setState({
+            // values are not null so that controlled Textfields show correct value
+            project: { 
+                name: '',
+                description: '',
+                thumbnail: '',
+                website: '',
+                github: '',
+                date_completed: '',
+                tag_id: '0'
+            }
+        });
     }
     handleChange = (key) => (event) => {
         this.setState({
@@ -25,7 +40,48 @@ class ProjectForm extends Component {
         });
     }
     handleClick = () => {
-        this.props.dispatch({ type: 'ADD_PROJECT', payload: this.state.project});
+        if (this.state.project.name) { // name is required
+            const newProject = this.translateInputs();
+            this.props.dispatch({ type: 'ADD_PROJECT', payload: newProject });
+            this.clearForm();
+            console.log('after clearForm:', this.state);
+        } else {
+            this.displaySnackBar(
+                'Name is a required field.',
+                3500
+            );
+        }
+    }
+    translateInputs = () => {
+        const { project } = this.state;
+        return ({
+            name: project.name, // will always have value
+            description: project.description !== '' ? project.description : null,
+            thumbnail: project.thumbnail !== '' ? project.thumbnail : null,
+            website: project.website !== '' ? project.website : null,
+            github: project.github !== '' ? project.github : null,
+            date_completed: project.date_completed !== '' ? project.date_completed : null,
+            tag_id: project.tag_id > 0 ? project.tag_id : null,
+        });
+    }
+    displaySnackBar = (msg, dwell) => {
+        this.props.dispatch({
+            type: 'SET_SNACKBAR',
+            payload: {
+                open: true,
+                vertical: 'bottom',
+                horizontal: 'center',
+                message: msg
+            }
+        });
+        setTimeout(() => {
+            this.props.dispatch({
+                type: 'SET_SNACKBAR',
+                payload: { open: false }
+            });
+        },
+            dwell
+        );
     }
     setTag = (id) => {
         this.setState({
@@ -36,41 +92,43 @@ class ProjectForm extends Component {
         console.log('tag id:', id);
     }
     render() {
+        console.log('in Form render(). state:', this.state);
+        const { project } = this.state;
         return (
             <form>
                 <TextField 
                     label='Name'
-                    value={this.state.name}
+                    value={project.name}
                     onChange={this.handleChange('name')}
                 />
                 <TextField
                     label='Date Completed'
-                    value={this.state.date_completed}
+                    value={project.date_completed}
                     onChange={this.handleChange('date_completed')}
                     type='date'
                     InputLabelProps={{
                         shrink: true,
                     }}
                 />
-                <SelectTag setTag={this.setTag} />
+                <SelectTag value={project.tag_id} setTag={this.setTag} />
                 <TextField
                     label='GitHub URL'
-                    value={this.state.github}
+                    value={project.github}
                     onChange={this.handleChange('github')}
                 />
                 <TextField
                     label='Website URL'
-                    value={this.state.website}
+                    value={project.website}
                     onChange={this.handleChange('website')}
                 />
                 <TextField
                     label='Thumbnail Image URL'
-                    value={this.state.thumbnail}
+                    value={project.thumbnail}
                     onChange={this.handleChange('thumbnail')}
                 />
                 <TextField
                     label='Description'
-                    value={this.state.description}
+                    value={project.description}
                     onChange={this.handleChange('description')}
                     multiline rowsMax='5'
                 />

@@ -28,7 +28,7 @@ class SelectTag extends Component {
                 <i className="mdc-select__dropdown-icon"></i>
                 <select className="mdc-select__native-control">
                     <option
-                        value="" disabled selected>
+                        value="" disabled selected={this.props.value === '0'}>
                     </option>
                     {tagList}
                 </select>
