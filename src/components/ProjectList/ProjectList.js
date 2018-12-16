@@ -10,8 +10,13 @@ class ProjectList extends Component {
     }
     render() {
         const projectList = this.props.store.projects.map( (proj) => {
+            if (proj.description === null) proj.description = '';
+            if (proj.thumbnail === null) proj.thumbnail = '';
+            if (proj.date_complete === null) proj.date_completed = '';
+            if (proj.github === null) proj.github = '';
+            if (proj.tag_name === null) proj.tag_name = '';
             return (
-                <Grid item>
+                <Grid item key={proj.id}>
                     <Project {...proj} />
                 </Grid>
             );

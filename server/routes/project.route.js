@@ -5,7 +5,7 @@ const pool = require('../modules/pool.js');
 router.get('/', (req, res) => {
     const query = 
         `SELECT "projects".*, "tags"."name" AS "tag_name" FROM "projects" 
-        JOIN "tags" ON "tags"."id" = "projects"."tag_id"
+        LEFT JOIN "tags" ON "tags"."id" = "projects"."tag_id"
         ORDER BY "date_completed" DESC;`;
     pool.query(query)
         .then((results) => {

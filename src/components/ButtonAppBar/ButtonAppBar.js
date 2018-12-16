@@ -31,7 +31,7 @@ function ButtonAppBar(props) {
                         <MenuIcon />
                     </IconButton>
                     <Typography variant="h2" color="inherit" className={classes.grow}>
-                        Full-stack Development Portfolio
+                        David Mayou's Full-stack Software Portfolio
                     </Typography>
                     <Button color="inherit">Login</Button>
                 </Toolbar>
