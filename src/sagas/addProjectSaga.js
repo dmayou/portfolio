@@ -5,37 +5,15 @@ import axios from 'axios';
 function* addProject(action) {
     try {
         yield call(axios.post, '/api/projects', action.payload);
-        yield dispatch({
-            type: 'SET_SNACKBAR',
-            payload: {
-                open: true,
-                vertical: 'bottom',
-                horizontal: 'center',
-                message: 'project added'
-            }
-        });
-        yield dispatch({ type: 'FETCH_PROJECTS' });
-        yield call(delay, 3500);
-        yield dispatch({
-            type: 'SET_SNACKBAR',
-            payload: { open: false }
+        yield dispatch({ 
+            type: 'SHOW_SNACKBAR', 
+            payload: {message: 'Project added successfully!', dwell: 3500}
         });
     } catch (err) {
         console.log('addProject error:', err);
         yield dispatch({
-            type: 'SET_SNACKBAR',
-            payload: {
-                open: true,
-                vertical: 'bottom',
-                horizontal: 'center',
-                message: 'ERROR adding project'
-            }
-        });
-        yield dispatch({ type: 'FETCH_PROJECTS' });
-        yield call(delay, 3500);
-        yield dispatch({
-            type: 'SET_SNACKBAR',
-            payload: { open: false }
+            type: 'SHOW_SNACKBAR',
+            payload: { message: 'ERROR adding project!', dwell: 3500 }
         });
     }
 }

@@ -66,22 +66,9 @@ class ProjectForm extends Component {
     }
     displaySnackBar = (msg, dwell) => {
         this.props.dispatch({
-            type: 'SET_SNACKBAR',
-            payload: {
-                open: true,
-                vertical: 'bottom',
-                horizontal: 'center',
-                message: msg
-            }
+            type: 'SHOW_SNACKBAR',
+            payload: { message: msg, dwell: dwell }
         });
-        setTimeout(() => {
-            this.props.dispatch({
-                type: 'SET_SNACKBAR',
-                payload: { open: false }
-            });
-        },
-            dwell
-        );
     }
     setTag = (id) => {
         this.setState({
