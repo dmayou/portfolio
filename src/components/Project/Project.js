@@ -1,9 +1,32 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Grid, Card, CardContent, CardMedia, CardActions, IconButton, Typography } from '@material-ui/core';
 import GitHubIcon from '../GitHubIcon/GitHubIcon';
 import HerokuLogo from '../HerokuLogo/HerokuLogo';
 
 class Project extends Component {
+    handleGitHubClick = () => { 
+        if (this.props.github.length !== 0) {
+            window.open(this.props.github);
+        } else {
+            this.props.dispatch({ 
+                type: 'SET_SNACKBAR', 
+                payload: { 
+                    open: true,
+                    vertical: 'bottom',
+                    horizontal: 'center',
+                    message: 'This project has no GitHub link.'
+                }
+            });
+            setTimeout( () => {
+                    this.props.dispatch({
+                        type: 'SET_SNACKBAR',
+                        payload: {open: false}
+                    })},
+                3500
+            );
+        }
+    }
     render() {
         const { props } = this;
         return (
@@ -27,7 +50,7 @@ class Project extends Component {
                     </CardContent>
                     <CardActions>
                         <IconButton><HerokuLogo/></IconButton>
-                        <IconButton><GitHubIcon/></IconButton>
+                        <IconButton onClick={this.handleGitHubClick}><GitHubIcon/></IconButton>
                     </CardActions>
                 </Card>
             </Grid>
@@ -35,4 +58,4 @@ class Project extends Component {
     }
 }
 
-export default Project;
+export default connect()(Project);

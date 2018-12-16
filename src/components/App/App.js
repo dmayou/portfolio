@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { createMuiTheme, Grid } from '@material-ui/core';
+import { connect } from 'react-redux';
+import { createMuiTheme, Grid, Snackbar } from '@material-ui/core';
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { withStyles } from '@material-ui/core/styles';
 import './App.css';
 import ButtonAppBar from '../ButtonAppBar/ButtonAppBar';
-// import Project from '../Project/Project';
 import ProjectList from '../ProjectList/ProjectList';
 import { beige, gray } from '@material-ui/core/colors';
 
@@ -16,12 +16,12 @@ const theme = createMuiTheme({
     useNextVariants: true,
     htmlFontSize: '8px',
   },
-  palette: {
-    background: {
-      paper: beige,
-      default: gray,
-    },
-  },
+  // palette: { // commented out because it breaks snackbar
+  //   background: {
+  //     paper: beige,
+  //     default: gray,
+  //   },
+  // },
 });
 
 const styles = {
@@ -49,6 +49,8 @@ const styles = {
 class App extends Component {
   // Renders the entire app on the DOM
   render() {
+    const { snackbar } = this.props.store;
+    console.log('in App render. snackbar=', snackbar);
     return (
         <MuiThemeProvider theme={theme}>
           <CssBaseline /> 
@@ -56,9 +58,19 @@ class App extends Component {
           <Grid container >
             <ProjectList />        
           </Grid>
+          <Snackbar 
+            open={snackbar.open} 
+            message={snackbar.message}
+          />
         </MuiThemeProvider>
     );
   }
 }
 
-export default withStyles(styles)(App);
+const mapStateToProps = (store) => {
+  return({
+    store
+  });
+};
+
+export default connect(mapStateToProps)(withStyles(styles)(App));
