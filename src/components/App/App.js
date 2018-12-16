@@ -62,7 +62,7 @@ class App extends Component {
               <ButtonAppBar />
               <Grid container >
                 <Route path="/" exact component={ProjectList} />
-                <Route path="/add" component={AdminView} />
+                <Route path="/admin" component={AdminView} />
               </Grid>
             </div>
           </Router>
