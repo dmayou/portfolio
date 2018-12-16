@@ -15,6 +15,7 @@ import fetchTags from './sagas/tagSaga';
 import addProject from './sagas/addProjectSaga';
 import deleteProject from './sagas/deleteProjectSaga';
 import snackBarNotify from './sagas/snackBarNotify';
+import addTag from './sagas/addTagSaga';
 
 // Create the rootSaga generator function
 function* rootSaga() {
@@ -23,6 +24,7 @@ function* rootSaga() {
     yield takeEvery('ADD_PROJECT', addProject);
     yield takeEvery('SHOW_SNACKBAR', snackBarNotify);
     yield takeEvery('DELETE_PROJECT', deleteProject);
+    yield takeEvery('ADD_TAG', addTag);
 }
 
 // Create sagaMiddleware

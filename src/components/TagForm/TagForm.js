@@ -8,7 +8,6 @@ class TagForm extends Component {
         newTag: ''
     }
     clearForm() {
-        console.log('in clearForm()');
         this.setState({
             newTag: ''
         });
@@ -24,7 +23,7 @@ class TagForm extends Component {
             this.clearForm();
         } else {
             this.displaySnackBar(
-                'You must enter a tag.',
+                'You must enter a tag to add.',
                 3500
             );
         }
@@ -39,7 +38,7 @@ class TagForm extends Component {
         return (
             <form>
                 <TextField
-                    label='Name'
+                    label='Tag Name'
                     value={this.state.newTag}
                     onChange={this.handleChange}
                 />

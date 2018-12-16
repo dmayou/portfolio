@@ -21,7 +21,6 @@ router.post('/', (req, res) => {
         `INSERT INTO "projects" 
         ("name", "description", "thumbnail", "website", "github", "date_completed", "tag_id")
         VALUES ($1, $2, $3, $4, $5, $6, $7);`;
-    console.log('req.body:', req.body);
     pool.query(query, [
             req.body.name,
             req.body.description,
