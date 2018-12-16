@@ -42,11 +42,31 @@ const tags = (state = [], action) => {
     }
 }
 
+// Used to store state of MUI Snackbar on App component
+const snackbarInitState = {
+    open: false,
+    vertical: 'bottom',
+    horizontal: 'center',
+    message: 'hello world'
+}
+const snackbar = (state = snackbarInitState, action) => {
+    switch (action.type) {
+        case 'SET_SNACKBAR':
+            return {
+                ...state,
+                ...action.payload
+            }
+        default:
+            return state;
+    }
+}
+
 // Create one store that all components can use
 const storeInstance = createStore(
     combineReducers({
         projects,
         tags,
+        snackbar,
     }),
     // Add sagaMiddleware to our store
     applyMiddleware(sagaMiddleware, logger),
