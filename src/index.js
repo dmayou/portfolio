@@ -12,11 +12,17 @@ import createSagaMiddleware from 'redux-saga';
 import { takeEvery } from 'redux-saga/effects';
 import fetchProjects from './sagas/projectSaga';
 import fetchTags from './sagas/tagSaga';
+import addProject from './sagas/addProjectSaga';
+import deleteProject from './sagas/deleteProjectSaga';
+import snackBarNotify from './sagas/snackBarNotify';
 
 // Create the rootSaga generator function
 function* rootSaga() {
     yield takeEvery('FETCH_PROJECTS', fetchProjects);
     yield takeEvery('FETCH_TAGS', fetchTags);
+    yield takeEvery('ADD_PROJECT', addProject);
+    yield takeEvery('SHOW_SNACKBAR', snackBarNotify);
+    yield takeEvery('DELETE_PROJECT', deleteProject);
 }
 
 // Create sagaMiddleware

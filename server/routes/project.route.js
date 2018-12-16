@@ -16,5 +16,40 @@ router.get('/', (req, res) => {
             res.sendStatus(500);
         });
 });
+router.post('/', (req, res) => {
+    const query =
+        `INSERT INTO "projects" 
+        ("name", "description", "thumbnail", "website", "github", "date_completed", "tag_id")
+        VALUES ($1, $2, $3, $4, $5, $6, $7);`;
+    console.log('req.body:', req.body);
+    pool.query(query, [
+            req.body.name,
+            req.body.description,
+            req.body.thumbnail,
+            req.body.website,
+            req.body.github,
+            req.body.date_completed,
+            req.body.tag_id ? Number(req.body.tag_id) : null // only use number is tag was selected
+        ])
+        .then((results) => {
+            res.sendStatus(201);
+        }).catch((err) => {
+            console.log('POST err:', err);
+            res.sendStatus(500);
+        });
+});
+router.delete('/:id', (req, res) => {
+    const { id } = req.params;
+    const query =
+        `DELETE FROM "projects"
+        WHERE "projects"."id"=$1;`;
+    pool.query(query, [id])
+        .then((results) => {
+            res.sendStatus(200);
+        }).catch((err) => {
+            console.log('DELETE err:', err);
+            res.sendStatus(500);
+        });
+});
 
 module.exports = router;
