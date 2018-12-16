@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { HashRouter as Router, Route } from "react-router-dom";
 import { createMuiTheme, Grid, Snackbar } from '@material-ui/core';
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -7,6 +8,7 @@ import { withStyles } from '@material-ui/core/styles';
 import './App.css';
 import ButtonAppBar from '../ButtonAppBar/ButtonAppBar';
 import ProjectList from '../ProjectList/ProjectList';
+import ProjectForm from '../ProjectForm/ProjectForm';
 
 import 'typeface-roboto';
 
@@ -51,11 +53,16 @@ class App extends Component {
     const { snackbar } = this.props.store;
     return (
         <MuiThemeProvider theme={theme}>
-          <CssBaseline /> 
-          <ButtonAppBar />
-          <Grid container >
-            <ProjectList />        
-          </Grid>
+          <Router>
+            <div>
+              <CssBaseline /> 
+              <ButtonAppBar />
+              <Grid container >
+                <Route path="/" exact component={ProjectList} />
+                <Route path="/add" component={ProjectForm} />
+              </Grid>
+            </div>
+          </Router>
           <Snackbar 
             open={snackbar.open} 
             message={snackbar.message}
