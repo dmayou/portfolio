@@ -5,7 +5,8 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import { withStyles } from '@material-ui/core/styles';
 import './App.css';
 import ButtonAppBar from '../ButtonAppBar/ButtonAppBar';
-import Project from '../Project/Project';
+// import Project from '../Project/Project';
+import ProjectList from '../ProjectList/ProjectList';
 import { beige, gray } from '@material-ui/core/colors';
 
 import 'typeface-roboto';
@@ -53,8 +54,9 @@ class App extends Component {
           <CssBaseline /> 
           <ButtonAppBar />
           <Grid container >
-            <Project />        
-            <Project />        
+          <div>
+            <ProjectList />        
+          </div>
           </Grid>
         </MuiThemeProvider>
     );
