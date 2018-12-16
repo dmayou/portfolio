@@ -5,27 +5,35 @@ import GitHubIcon from '../GitHubIcon/GitHubIcon';
 import HerokuLogo from '../HerokuLogo/HerokuLogo';
 
 class Project extends Component {
-    handleGitHubClick = () => { 
-        if (this.props.github.length !== 0) {
-            window.open(this.props.github);
+    handleLinkClick = (keyName, siteName) => () => { 
+        const link = this.props[keyName];
+        if (link !== '') {
+            window.open(link);
         } else {
-            this.props.dispatch({ 
-                type: 'SET_SNACKBAR', 
-                payload: { 
-                    open: true,
-                    vertical: 'bottom',
-                    horizontal: 'center',
-                    message: 'This project has no GitHub link.'
-                }
-            });
-            setTimeout( () => {
-                    this.props.dispatch({
-                        type: 'SET_SNACKBAR',
-                        payload: {open: false}
-                    })},
+            this.displaySnackBar(
+                `This project has no ${siteName} link.`,
                 3500
             );
         }
+    }
+    displaySnackBar = (msg, dwell) => {
+        this.props.dispatch({
+            type: 'SET_SNACKBAR',
+            payload: {
+                open: true,
+                vertical: 'bottom',
+                horizontal: 'center',
+                message: msg
+            }
+        });
+        setTimeout(() => {
+            this.props.dispatch({
+                type: 'SET_SNACKBAR',
+                payload: { open: false }
+            });
+            },
+            dwell
+        );
     }
     render() {
         const { props } = this;
@@ -49,8 +57,14 @@ class Project extends Component {
                         </Typography>
                     </CardContent>
                     <CardActions>
-                        <IconButton><HerokuLogo/></IconButton>
-                        <IconButton onClick={this.handleGitHubClick}><GitHubIcon/></IconButton>
+                        <IconButton 
+                            onClick={this.handleLinkClick('website', 'website')}>
+                            <HerokuLogo/>
+                        </IconButton>
+                        <IconButton 
+                            onClick={this.handleLinkClick('github', 'GitHub')}>
+                            <GitHubIcon/>
+                        </IconButton>
                     </CardActions>
                 </Card>
             </Grid>

@@ -5,7 +5,7 @@ function HerokuLogo(props) {
         <div>
             <img 
                 src='/images/Heroku/heroku-logotype-vertical-black.png' 
-                width="46px" height="46px" 
+                width="36px" height="36px" 
                 alt='' />
         </div>
     );

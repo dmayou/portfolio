@@ -7,7 +7,6 @@ import { withStyles } from '@material-ui/core/styles';
 import './App.css';
 import ButtonAppBar from '../ButtonAppBar/ButtonAppBar';
 import ProjectList from '../ProjectList/ProjectList';
-import { beige, gray } from '@material-ui/core/colors';
 
 import 'typeface-roboto';
 
@@ -16,7 +15,7 @@ const theme = createMuiTheme({
     useNextVariants: true,
     htmlFontSize: '8px',
   },
-  // palette: { // commented out because it breaks snackbar
+  // palette: { // commented out because some colors break snackbar
   //   background: {
   //     paper: beige,
   //     default: gray,
@@ -50,7 +49,6 @@ class App extends Component {
   // Renders the entire app on the DOM
   render() {
     const { snackbar } = this.props.store;
-    console.log('in App render. snackbar=', snackbar);
     return (
         <MuiThemeProvider theme={theme}>
           <CssBaseline /> 
