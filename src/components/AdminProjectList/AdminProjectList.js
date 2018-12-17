@@ -27,17 +27,17 @@ class AdminProjectList extends Component {
     });
     return(
         <Paper>
-        <Table>
-            <TableHead>
-                <TableRow>
-                    <TableCell>Project Name</TableCell>
-                    <TableCell>Delete</TableCell>
-                </TableRow>
-            </TableHead>
-            <TableBody>
-                {projectList}
-            </TableBody>
-        </Table>
+            <Table>
+                <TableHead>
+                    <TableRow>
+                        <TableCell>Project Name</TableCell>
+                        <TableCell>Delete</TableCell>
+                    </TableRow>
+                </TableHead>
+                <TableBody>
+                    {projectList}
+                </TableBody>
+            </Table>
         </Paper>
     );
     }

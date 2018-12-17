@@ -14,7 +14,7 @@ class ProjectForm extends Component {
             website: '',
             github: '',
             date_completed: '',
-            tag_id: '0',
+            tag_id: '0', // to select blank list choice
         }
     }
     clearForm() {
@@ -53,6 +53,8 @@ class ProjectForm extends Component {
         }
     }
     translateInputs = () => {
+        // inputs with zero length should be saved as null in database
+        // if no tag selected, tag_id should be null as that is join on field
         const { project } = this.state;
         return ({
             name: project.name, // will always have value

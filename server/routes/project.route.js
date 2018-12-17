@@ -28,14 +28,16 @@ router.post('/', (req, res) => {
             req.body.website,
             req.body.github,
             req.body.date_completed,
-            req.body.tag_id ? Number(req.body.tag_id) : null // only use number is tag was selected
+            // because of table joins, use number for tag_id only if tag selected, null otherwise
+            req.body.tag_id ? Number(req.body.tag_id) : null
         ])
         .then((results) => {
             res.sendStatus(201);
         }).catch((err) => {
             console.log('POST err:', err);
             res.sendStatus(500);
-        });
+        }
+    );
 });
 router.delete('/:id', (req, res) => {
     const { id } = req.params;
@@ -48,7 +50,8 @@ router.delete('/:id', (req, res) => {
         }).catch((err) => {
             console.log('DELETE err:', err);
             res.sendStatus(500);
-        });
+        }
+    );
 });
 
 module.exports = router;

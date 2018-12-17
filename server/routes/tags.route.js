@@ -11,7 +11,8 @@ router.get('/', (req, res) => {
         }).catch((err) => {
             console.log('GET err:', err);
             res.sendStatus(500);
-        });
+        }
+    );
 });
 router.post('/', (req, res) => {
     const query =
@@ -23,7 +24,8 @@ router.post('/', (req, res) => {
         }).catch((err) => {
             console.log('POST err:', err);
             res.sendStatus(500);
-        });
+        }
+    );
 });
 
 module.exports = router;

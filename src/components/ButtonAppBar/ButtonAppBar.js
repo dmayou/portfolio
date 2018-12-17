@@ -37,16 +37,20 @@ class ButtonAppBar extends Component {
     }
     render() {
         const { classes } = this.props;
-        const buttons =
-            <div>
-                {this.props.history.location.pathname === '/admin' ?
+        let buttonLink; // button to move between list and admin views
+        if (this.props.history.location.pathname === '/admin') {
+            buttonLink =
+                <div>
                     <Button onClick={this.changeView}>View Projects</Button>
-                :
+                </div>
+        } else { // path='/'
+            buttonLink =
+                <div>
                     <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
                         <Settings onClick={this.changeView} />
                     </IconButton>
-                }
-            </div>;
+                </div>
+        }
         return (
             <div className={classes.root}>
                 <AppBar position="static">
@@ -54,7 +58,7 @@ class ButtonAppBar extends Component {
                         <Typography variant="h2" color="inherit" className={classes.grow}>
                             David Mayou's Full-stack Software Portfolio
                         </Typography>
-                        {buttons}
+                        {buttonLink}
                     </Toolbar>
                 </AppBar>
             </div>

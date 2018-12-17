@@ -10,6 +10,7 @@ class SelectTag extends Component {
     initSelect() {
         const select = new MDCSelect(document.querySelector('.mdc-select'));
         select.listen('MDCSelect:change', () => {
+            // convert from index in dropdown to database join on id
             const dbTagId = this.props.store.tags[select.selectedIndex - 1].id
             this.props.setTag(dbTagId);
         });

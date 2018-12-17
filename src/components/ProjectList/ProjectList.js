@@ -6,6 +6,7 @@ import Project from '../Project/Project';
 class ProjectList extends Component {
     render() {
         const projectList = this.props.store.projects.map( (proj) => {
+            // map null db fields to empty strings
             if (proj.description === null) proj.description = '';
             if (proj.thumbnail === null) proj.thumbnail = '';
             if (proj.date_completed === null) proj.date_completed = '';
