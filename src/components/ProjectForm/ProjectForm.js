@@ -56,7 +56,6 @@ class ProjectForm extends Component {
             const newProject = this.translateInputs();
             this.props.dispatch({ type: 'ADD_PROJECT', payload: newProject });
             this.clearForm();
-            console.log('after clearForm:', this.state);
         } else {
             this.displaySnackBar(
                 'Name is a required field.',
@@ -90,7 +89,6 @@ class ProjectForm extends Component {
                 ...this.state.project, tag_id: id
             }
         });
-        console.log('tag id:', id);
     }
     render() {
         const { project } = this.state;

@@ -18,7 +18,7 @@ function* snackBarNotify(action) {
             payload: { open: false }
         });
     } catch (err) {
-        console.log('SnackBarNotify Saga error:', err);
+        console.error('SnackBarNotify Saga error:', err);
     }
 }
 

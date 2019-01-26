@@ -10,7 +10,7 @@ function* addProject(action) {
         });
         yield dispatch({ type: 'FETCH_PROJECTS' });
     } catch (err) {
-        console.log('addProject error:', err);
+        console.error('addProject error:', err);
         yield dispatch({
             type: 'SHOW_SNACKBAR',
             payload: { message: 'ERROR adding project!', dwell: 3500 }

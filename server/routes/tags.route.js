@@ -9,7 +9,7 @@ router.get('/', (req, res) => {
         .then((results) => {
             res.send(results.rows);
         }).catch((err) => {
-            console.log('GET err:', err);
+            console.error('GET err:', err);
             res.sendStatus(500);
         }
     );
@@ -22,7 +22,7 @@ router.post('/', (req, res) => {
         .then((results) => {
             res.sendStatus(201);
         }).catch((err) => {
-            console.log('POST err:', err);
+            console.error('POST err:', err);
             res.sendStatus(500);
         }
     );

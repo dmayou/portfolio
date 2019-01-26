@@ -16,5 +16,5 @@ app.use('/api/tags', tagsRouter);
 
 /** ---------- START SERVER ---------- **/
 app.listen(port, function () {
-    console.log('Listening on port: ', port);
+    console.info('Listening on port: ', port);
 });

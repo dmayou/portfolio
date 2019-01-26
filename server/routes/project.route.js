@@ -9,10 +9,9 @@ router.get('/', (req, res) => {
         ORDER BY "date_completed" DESC;`;
     pool.query(query)
         .then((results) => {
-            console.log('GET results:', results.rows);
             res.send(results.rows);
         }).catch((err) => {
-            console.log('GET err:', err);
+            console.error('GET err:', err);
             res.sendStatus(500);
         });
 });
@@ -34,7 +33,7 @@ router.post('/', (req, res) => {
         .then((results) => {
             res.sendStatus(201);
         }).catch((err) => {
-            console.log('POST err:', err);
+            console.error('POST err:', err);
             res.sendStatus(500);
         }
     );
@@ -48,7 +47,7 @@ router.delete('/:id', (req, res) => {
         .then((results) => {
             res.sendStatus(200);
         }).catch((err) => {
-            console.log('DELETE err:', err);
+            console.error('DELETE err:', err);
             res.sendStatus(500);
         }
     );
