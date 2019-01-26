@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
-import { Grid, Card, CardActionArea, CardContent, CardMedia, CardActions, IconButton, Typography } from '@material-ui/core';
+import { Grid, Card, CardMedia, CardActions, IconButton, Typography } from '@material-ui/core';
 import GitHubIcon from '../GitHubIcon/GitHubIcon';
 import HerokuLogo from '../HerokuLogo/HerokuLogo';
 
@@ -58,22 +58,20 @@ class Project extends Component {
         return (
             <Grid key={props.id} item xs={12} sm={6}>
                 <Card className={classes.card}>
-                    {/* <CardContent> */}
-                        <CardMedia
-                            className={classes.media}
-                            image={`/images/${props.thumbnail}`}
-                            title=''
-                            />
-                        <Typography variant='h2' className={classes.heading}>
-                            {props.name}
-                        </Typography>
-                        <Typography variant='body1' className={classes.body}>
-                            {props.description}
-                        </Typography>
-                        <Typography className={classes.body}>
-                            Tags: {props.tag_name}
-                        </Typography>
-                    {/* </CardContent> */}
+                    <CardMedia
+                        className={classes.media}
+                        image={`/images/${props.thumbnail}`}
+                        title=''
+                    />
+                    <Typography variant='h2' className={classes.heading}>
+                        {props.name}
+                    </Typography>
+                    <Typography variant='body1' className={classes.body}>
+                        {props.description}
+                    </Typography>
+                    <Typography className={classes.body}>
+                        Tags: {props.tag_name}
+                    </Typography>
                     <CardActions>
                         <IconButton 
                             onClick={this.handleLinkClick('website', 'website')}>

@@ -14,9 +14,7 @@ class ProjectList extends Component {
             if (proj.website === null) proj.website = '';
             if (proj.tag_name === null) proj.tag_name = '';
             return (
-                <Grid item key={proj.id}>
                     <ProjectCard {...proj} />
-                </Grid>
             );
         });
         return (
