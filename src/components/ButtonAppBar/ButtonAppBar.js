@@ -9,18 +9,24 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import Settings from '@material-ui/icons/Settings';
 
-const styles = {
+const styles = theme => ({
     root: {
         flexGrow: 1,
     },
     grow: {
         flexGrow: 1,
+        [theme.breakpoints.down('xs')]: {
+            fontSize: 18,
+        },
+        [theme.breakpoints.up('sm')]: {
+            fontSize: 24,
+        },
     },
     menuButton: {
         marginLeft: -12,
         marginRight: 20,
     },
-};
+});
 
 class ButtonAppBar extends Component {
     changeView = (direction) => {
@@ -56,7 +62,7 @@ class ButtonAppBar extends Component {
                 <AppBar position="static">
                     <Toolbar>
                         <Typography variant="h2" color="inherit" className={classes.grow}>
-                            David Mayou's Full-stack Software Portfolio
+                            David Mayou's Full-stack Portfolio
                         </Typography>
                         {buttonLink}
                     </Toolbar>
