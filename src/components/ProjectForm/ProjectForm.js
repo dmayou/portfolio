@@ -1,9 +1,22 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
-import { Button, TextField } from '@material-ui/core';
+import { withStyles } from '@material-ui/core/styles';
+import { Button, TextField, Typography } from '@material-ui/core';
 
 import SelectTag from '../SelectTag/SelectTag';
+
+const styles = theme => ({
+    title: {
+        margin: theme.spacing.unit,
+        marginTop: theme.spacing.unit * 3,
+    },
+    textField: {
+        margin: theme.spacing.unit,
+    },
+    button: {
+        margin: theme.spacing.unit,
+    },
+});
 
 class ProjectForm extends Component {
     state = {
@@ -18,7 +31,6 @@ class ProjectForm extends Component {
         }
     }
     clearForm() {
-        console.log('in clearForm()');
         this.setState({
             // values are not null so that controlled Textfields show correct value
             project: { 
@@ -44,7 +56,6 @@ class ProjectForm extends Component {
             const newProject = this.translateInputs();
             this.props.dispatch({ type: 'ADD_PROJECT', payload: newProject });
             this.clearForm();
-            console.log('after clearForm:', this.state);
         } else {
             this.displaySnackBar(
                 'Name is a required field.',
@@ -78,18 +89,24 @@ class ProjectForm extends Component {
                 ...this.state.project, tag_id: id
             }
         });
-        console.log('tag id:', id);
     }
     render() {
         const { project } = this.state;
+        const { classes } = this.props;
         return (
             <form>
+                <div>
+                <Typography className={classes.title} variant={'h2'}>
+                    Add New Project
+                </Typography>
                 <TextField 
+                    className={classes.textField}
                     label='Name'
                     value={project.name}
                     onChange={this.handleChange('name')}
                 />
                 <TextField
+                    className={classes.textField}
                     label='Date Completed'
                     value={project.date_completed}
                     onChange={this.handleChange('date_completed')}
@@ -100,35 +117,43 @@ class ProjectForm extends Component {
                 />
                 <SelectTag value={project.tag_id} setTag={this.setTag} />
                 <TextField
+                    className={classes.textField}
                     label='GitHub URL'
                     value={project.github}
                     onChange={this.handleChange('github')}
                 />
                 <TextField
+                    className={classes.textField}
                     label='Website URL'
                     value={project.website}
                     onChange={this.handleChange('website')}
                 />
                 <TextField
+                    className={classes.textField}
                     label='Thumbnail Image URL'
                     value={project.thumbnail}
                     onChange={this.handleChange('thumbnail')}
                 />
                 <TextField
+                    className={classes.textField}
                     label='Description'
                     value={project.description}
                     onChange={this.handleChange('description')}
                     multiline rowsMax='5'
                 />
+                </div>
+                <div>
                 <Button
+                    className={classes.button}
                     onClick={this.handleClick}
                     variant="contained"
                     default
                     >Add Project
                 </Button>
+                </div>
             </form>
         );
     }
 }
 
-export default connect()(ProjectForm);
+export default connect()(withStyles(styles)(ProjectForm));

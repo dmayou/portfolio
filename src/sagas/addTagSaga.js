@@ -10,7 +10,7 @@ function* addTag(action) {
         });
         yield dispatch({ type: 'FETCH_TAGS' });
     } catch (err) {
-        console.log('addtag error:', err);
+        console.error('addtag error:', err);
         yield dispatch({
             type: 'SHOW_SNACKBAR',
             payload: { message: 'ERROR adding tag!', dwell: 3500 }

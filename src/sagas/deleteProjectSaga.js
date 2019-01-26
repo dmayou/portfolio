@@ -10,7 +10,7 @@ function* deleteProject(action) {
         });
         yield dispatch({ type: 'FETCH_PROJECTS' });
     } catch (err) {
-        console.log('deleteProject error:', err);
+        console.error('deleteProject error:', err);
         yield dispatch({
             type: 'SHOW_SNACKBAR',
             payload: { message: 'ERROR deleting project!', dwell: 3500 }

@@ -6,7 +6,7 @@ function* fetchProjects() {
         const projectsList = yield call(axios.get, '/api/projects');
         yield dispatch({ type: 'SET_PROJECTS', payload: projectsList.data });
     } catch (err) {
-        console.log('addProject error:', err);
+        console.error('addProject error:', err);
     }
 }
 
