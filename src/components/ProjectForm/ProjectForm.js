@@ -8,6 +8,7 @@ import SelectTag from '../SelectTag/SelectTag';
 const styles = theme => ({
     title: {
         margin: theme.spacing.unit,
+        marginTop: theme.spacing.unit * 3,
     },
     textField: {
         margin: theme.spacing.unit,

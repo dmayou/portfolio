@@ -8,6 +8,7 @@ function AdminView(props) {
         <div>
             <ProjectForm />
             <AdminProjectList />
+            <br/>
             <TagForm />
         </div>
     );

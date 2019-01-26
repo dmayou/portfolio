@@ -1,7 +1,19 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withStyles } from '@material-ui/core/styles';
+import { Button, TextField, Typography } from '@material-ui/core';
 
-import { Button, TextField } from '@material-ui/core';
+const styles = theme => ({
+    title: {
+        margin: theme.spacing.unit,
+    },
+    textField: {
+        margin: theme.spacing.unit,
+    },
+    button: {
+        margin: theme.spacing.unit,
+    },
+});
 
 class TagForm extends Component {
     state = {
@@ -35,14 +47,20 @@ class TagForm extends Component {
         });
     }
     render() {
+        const { classes } = this.props;
         return (
             <form>
+                <Typography variant={'h2'} className={classes.title}>
+                    Add Tag
+                </Typography>
                 <TextField
+                    className={classes.textField}
                     label='Tag Name'
                     value={this.state.newTag}
                     onChange={this.handleChange}
                 />
                 <Button
+                    className={classes.button}
                     onClick={this.handleClick}
                     variant="contained"
                     default
@@ -53,4 +71,4 @@ class TagForm extends Component {
     }
 }
 
-export default connect()(TagForm);
+export default connect()(withStyles(styles)(TagForm));
