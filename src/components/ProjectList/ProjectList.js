@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Grid } from '@material-ui/core';
-import Project from '../Project/Project';
+import ProjectCard from '../ProjectCard/ProjectCard';
 
 class ProjectList extends Component {
     render() {
@@ -15,7 +15,7 @@ class ProjectList extends Component {
             if (proj.tag_name === null) proj.tag_name = '';
             return (
                 <Grid item key={proj.id}>
-                    <Project {...proj} />
+                    <ProjectCard {...proj} />
                 </Grid>
             );
         });
