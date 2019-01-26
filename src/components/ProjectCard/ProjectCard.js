@@ -7,6 +7,7 @@ import HerokuLogo from '../HerokuLogo/HerokuLogo';
 
 const styles = theme => ({
     card: {
+        backgroundColor: '#f6f6f6',
         margin: theme.spacing.unit,
     },
     media: {
