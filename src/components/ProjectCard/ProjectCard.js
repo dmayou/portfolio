@@ -1,8 +1,25 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Grid, Card, CardContent, CardMedia, CardActions, IconButton, Typography } from '@material-ui/core';
+import { withStyles } from '@material-ui/core/styles';
+import { Grid, Card, CardActionArea, CardContent, CardMedia, CardActions, IconButton, Typography } from '@material-ui/core';
 import GitHubIcon from '../GitHubIcon/GitHubIcon';
 import HerokuLogo from '../HerokuLogo/HerokuLogo';
+
+const styles = theme => ({
+    card: {
+        margin: theme.spacing.unit,
+    },
+    media: {
+        maxHeight: 400,
+        padding: '40%',
+    },
+    heading: {
+        margin: theme.spacing.unit,
+    },
+    body: {
+        margin: theme.spacing.unit,
+    },
+});
 
 class Project extends Component {
     handleLinkClick = (keyName, siteName) => () => { 
@@ -37,25 +54,26 @@ class Project extends Component {
     }
     render() {
         const { props } = this;
+        const { classes } = props;
         return (
-            <Grid key={props.id} item>
-                <Card>
-                    <CardContent>
-                        <Typography variant='h2'>
-                            {props.name}
-                        </Typography>
+            <Grid key={props.id} item xs={12} sm={6}>
+                <Card className={classes.card}>
+                    {/* <CardContent> */}
                         <CardMedia
-                            style={{ minHeight: '400px', width: '95%', paddingTop: 'auto' }}
+                            className={classes.media}
                             image={`/images/${props.thumbnail}`}
                             title=''
-                        />
-                        <Typography variant='body1'>
+                            />
+                        <Typography variant='h2' className={classes.heading}>
+                            {props.name}
+                        </Typography>
+                        <Typography variant='body1' className={classes.body}>
                             {props.description}
                         </Typography>
-                        <Typography>
+                        <Typography className={classes.body}>
                             Tags: {props.tag_name}
                         </Typography>
-                    </CardContent>
+                    {/* </CardContent> */}
                     <CardActions>
                         <IconButton 
                             onClick={this.handleLinkClick('website', 'website')}>
@@ -72,4 +90,4 @@ class Project extends Component {
     }
 }
 
-export default connect()(Project);
+export default connect()(withStyles(styles)(Project));
