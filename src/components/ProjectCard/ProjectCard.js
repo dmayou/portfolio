@@ -11,8 +11,9 @@ const styles = theme => ({
         margin: theme.spacing.unit,
     },
     media: {
-        maxHeight: 400,
+        // maxHeight: 400,
         padding: '40%',
+        backgroundSize: 'contain',
     },
     heading: {
         margin: theme.spacing.unit,
